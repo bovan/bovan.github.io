@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="a typescript presentation">
+	<meta name="author" content="edm00se">
+	<title>TypeScript</title>
+	<!-- Font Awesome! -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/reveal.js@3.6.0/css/reveal.css">
+	<link rel="stylesheet" href="https://unpkg.com/reveal.js@3.6.0/css/theme/night.css" id="theme">
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="https://unpkg.com/reveal.js@3.6.0/lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'https://unpkg.com/reveal.js@3.6.0/css/print/pdf.css' : 'https://unpkg.com/reveal.js@3.6.0/css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	<script src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+
+	<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+        <section data-markdown>
+            <script type="text/template">
+                ## TypeScript
+
+
+                #### Bouvet Trondheim
+
+                <br />
+                Børge Antonsen
+
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## Æ?
+
+                ##### Børge Antonsen
+
+                <img src="img/borge_lop.jpg" class="img-circle img-responsive img-center profile"  />
+
+                <br/>
+                    Direktoratet for Mineralforvaltning
+                <br/>
+                    "Altmuligmann med Frontend fokus"
+
+            </script>
+        </section>
+
+        <section>
+            <h2>Hype</h2>
+            <img src="https://i.imgur.com/V6hiTxw.gif" />
+        </section>
+
+        <section>
+            <h2>Hva er TypeScript?</h2>
+            <p class="fragment">Superset av JavaScript​</p>
+            <p class="fragment">Lansert i 2012 av Microsoft​</p>
+            <p class="fragment">Open Source​</p>
+            <br/>
+            <p class="fragment">https://github.com/Microsoft/TypeScript</p>
+        </section>
+
+        <section>
+            <h2>Hvor er TypeScript?</h2>
+            <p class="fragment">Standard i Angular 2 &amp; Dojo 2</p>
+            <p class="fragment">Kompatibel med React, Vue og mye mer</p>
+            <p class="fragment">Alle editorer/IDE</p>
+            <p class="fragment">Visual Studio Code er laget i Typescript!</p>
+        </section>
+
+        <section data-markdown>
+            <h3>Typet språk</h3>
+            <pre>
+                <code data-trim>
+                    let color: string = "blue"; 
+                    let age: number = 37; 
+                    let list: number[] = [1, 2, 3];
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h3>Mer avanserte typer</h3>
+            <pre>
+                <code data-trim>
+                    enum Color {Red, Green, Blue};
+                    enum Color {Red = 1, Green = 2, Blue = 4};
+                    
+                    function warnUser(): void {
+                        alert("This is my warning message"); 
+                    } 
+                    
+                    function putInArray&lt;T&gt;(obj: T): T[] { 
+                        return [obj]; 
+                    }
+                </code>
+            </pre>
+        </section>
+
+        <section data-markdown>
+            <h3>Safeguards</h3>
+
+            <pre>
+                <code data-trim>
+                    let age: number = 37; 
+                    let names = [] as string[]; 
+
+                    age = "38"; // UGYLDIG! 
+
+                    names.push("Stian"); // Gyldig 
+                    names.push(2); // UGYLDIG
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h3>Klasser</h3>
+            <pre>
+                <code data-trim>
+                    class Greeter {
+                        greeting: string;
+                        constructor(message: string) {
+                            this.greeting = message;
+                        }
+                        greet() {
+                            return "Hello, " + this.greeting;
+                        }
+                    }
+                    
+                    let greeter = new Greeter("world");
+                </code>
+            </pre>
+        </section>
+        <section>
+            <h3>Opprinnelig TypeScript</h2>
+                <pre>
+                <code data-trim>
+                    class LogOnClick {
+                        constructor(el: HTMLElement) {
+                            el.addEventListener(
+                                "click", 
+                                (e) => this.log(el)
+                            );
+                        }
+                        log(el) {
+                            console.log("Du klikket på", el);
+                        }
+                    }				
+                </code>
+            </pre>
+        </section>
+        <section>
+            <h3>Kompilert javaScript</h2>
+                <pre>
+                <code data-trim>
+                    var LogOnClick = /** @class */ (function () {
+                        function LogOnClick(el) {
+                            var _this = this;
+                            el.addEventListener(
+                                "click", 
+                                function (e) { return _this.log(el); })
+                            ;
+                        }
+                        LogOnClick.prototype.log = function (el) {
+                            console.log("Du klikket på", el);
+                        };
+                        return LogOnClick;
+                    }());					
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h2>Intermission</h2>
+            <img src="https://i.imgur.com/Qjw3atv.gif" />
+        </section>
+
+        <section>
+            <h3>Fordeler / Demo</h3>
+            
+            <p class="fragment">Valgfrie statiske typer</p>
+            <p class="fragment">Automatisk typegjenkjenning</p>
+            <p class="fragment">Tilgang til ES6+ i alle nettlesere</p>
+            <p class="fragment">Gode verktøy</p>
+            <p class="fragment">Lett å komme i gang</p>
+            <p class="fragment">Intellisense</p>
+            <p class="fragment">Færre bugs</p>
+        </section>
+
+        <section>
+            <h3>Ulemper</h3>
+
+            <p class="fragment">Kompilering tar litt mer tid</p>
+            <p class="fragment">Oppsett av miljø</p>
+            <p class="fragment">Overbevise team</p>
+            <p class="fragment">Kan gi falsk trygghet</p>
+        </section>
+
+        <section>
+            <h3>Spørsmål?</h3>
+            <img src="http://media.tumblr.com/e3ec8341ecad4dddedf152238fe6cdd9/tumblr_inline_mmb1xjgXoc1qz4rgp.gif" />
+        </section>
+
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/headjs@1.0.3/dist/1.0.0/head.min.js"></script>
+<script src="https://unpkg.com/reveal.js@3.6.0/js/reveal.js"></script>
+<script>
+	// Full list of configuration options available at:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+		fragments: true,
+
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+		// Optional reveal.js plugins
+		dependencies: [
+			// { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			// Interpret Markdown in <section> elements
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/zoom-js/zoom.js', async: true },
+            { src: 'https://unpkg.com/reveal.js@3.6.0/plugin/notes/notes.js', async: true }
+		]
+	});
+
+</script>
+<!-- Socket.io client-->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    (function(){
+        Reveal.initialize({
+            history: true
+        });
+
+        var proto = window.location.protocol;
+        var h = window.location.host;
+        var val = proto+'//'+h;
+        console.log(val);
+        var socket = io.connect(val);
+        socket.on('slidechanged', function (data) {
+            Reveal.slide(data.indexh, data.indexv, data.indexf);
+        });
+
+    })();
+</script>
+</body>
+</html>
